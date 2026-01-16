@@ -597,6 +597,8 @@ function IOURequestStepDistanceMap({
             shouldShowWrapper={!isCreatingNewRequest}
         >
             <>
+
+            {/* this is the start and stop points inputs with map */}
                 <View style={styles.flex1}>
                     <DraggableList
                         data={waypointsList}
@@ -614,6 +616,9 @@ function IOURequestStepDistanceMap({
                         }
                     />
                 </View>
+
+
+
                 <View style={[styles.w100, styles.pt2]}>
                     {/* Show error message if there is route error or there are less than 2 routes and user has tried submitting, */}
                     {((shouldShowAtLeastTwoDifferentWaypointsError && atLeastTwoDifferentWaypointsError) || duplicateWaypointsError || hasRouteError) && (

@@ -189,6 +189,9 @@ function DistanceRequestStartPage({
                         onActiveTabFocusTrapContainerElementChanged={setActiveTabContainerElement}
                         lazyLoadEnabled
                     >
+
+
+{/* this is the map secion of distance trak popup */}
                         <TopTab.Screen name={CONST.TAB_REQUEST.DISTANCE_MAP}>
                             {() => (
                                 <TabScreenWithFocusTrapWrapper>
@@ -199,6 +202,10 @@ function DistanceRequestStartPage({
                                 </TabScreenWithFocusTrapWrapper>
                             )}
                         </TopTab.Screen>
+
+
+
+
                         <TopTab.Screen name={CONST.TAB_REQUEST.DISTANCE_MANUAL}>
                             {() => (
                                 <TabScreenWithFocusTrapWrapper>

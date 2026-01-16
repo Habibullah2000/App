@@ -459,6 +459,7 @@ function PolicyDistanceRatesPage({
         </>
     );
 
+<<<<<<< Updated upstream
     return (
         <AccessOrNotFoundWrapper
             accessVariants={[CONST.POLICY.ACCESS_VARIANTS.ADMIN, CONST.POLICY.ACCESS_VARIANTS.PAID]}
@@ -539,6 +540,90 @@ function PolicyDistanceRatesPage({
             </ScreenWrapper>
         </AccessOrNotFoundWrapper>
     );
+=======
+    return null;
+
+    // return (
+    //     <AccessOrNotFoundWrapper
+    //         accessVariants={[CONST.POLICY.ACCESS_VARIANTS.ADMIN, CONST.POLICY.ACCESS_VARIANTS.PAID]}
+    //         policyID={policyID}
+    //         featureName={CONST.POLICY.MORE_FEATURES.ARE_DISTANCE_RATES_ENABLED}
+    //     >
+    //         <ScreenWrapper
+    //             enableEdgeToEdgeBottomSafeAreaPadding
+    //             style={[styles.defaultModalContainer]}
+    //             testID="PolicyDistanceRatesPage"
+    //             shouldShowOfflineIndicatorInWideScreen
+    //         >
+    //             <HeaderWithBackButton
+    //                 icon={!selectionModeHeader ? CarIce : undefined}
+    //                 shouldUseHeadlineHeader={!selectionModeHeader}
+    //                 title={translate(!selectionModeHeader ? 'workspace.common.distanceRates' : 'common.selectMultiple')}
+    //                 shouldShowBackButton={shouldUseNarrowLayout}
+    //                 onBackButtonPress={() => {
+    //                     if (isMobileSelectionModeEnabled) {
+    //                         setSelectedDistanceRates([]);
+    //                         turnOffMobileSelectionMode();
+    //                         return;
+    //                     }
+    //                     Navigation.popToSidebar();
+    //                 }}
+    //             >
+    //                 {!shouldUseNarrowLayout && headerButtons}
+    //             </HeaderWithBackButton>
+    //             {shouldUseNarrowLayout && <View style={[styles.ph5]}>{headerButtons}</View>}
+    //             {isLoading && (
+    //                 <ActivityIndicator
+    //                     size={CONST.ACTIVITY_INDICATOR_SIZE.LARGE}
+    //                     style={[styles.flex1]}
+    //                 />
+    //             )}
+    //             {Object.values(customUnitRates).length > 0 && (
+    //                 <SelectionListWithModal
+    //                     addBottomSafeAreaPadding
+    //                     canSelectMultiple={canSelectMultiple}
+    //                     turnOnSelectionModeOnLongPress
+    //                     onTurnOnSelectionMode={(item) => item && toggleRate(item)}
+    //                     sections={[{data: filteredDistanceRatesList, isDisabled: false}]}
+    //                     shouldUseDefaultRightHandSideCheckmark={false}
+    //                     selectedItems={selectedDistanceRates}
+    //                     onCheckboxPress={toggleRate}
+    //                     onSelectRow={openRateDetails}
+    //                     onSelectAll={filteredDistanceRatesList.length > 0 ? toggleAllRates : undefined}
+    //                     onDismissError={dismissError}
+    //                     ListItem={TableListItem}
+    //                     listHeaderContent={headerContent}
+    //                     shouldPreventDefaultFocusOnSelectRow={!canUseTouchScreen()}
+    //                     customListHeader={getCustomListHeader()}
+    //                     shouldShowListEmptyContent={false}
+    //                     listHeaderWrapperStyle={[styles.ph9, styles.pv3, styles.pb5]}
+    //                     showScrollIndicator={false}
+    //                     shouldShowRightCaret
+    //                 />
+    //             )}
+    //             <ConfirmModal
+    //                 onConfirm={() => setIsWarningModalVisible(false)}
+    //                 onCancel={() => setIsWarningModalVisible(false)}
+    //                 isVisible={isWarningModalVisible}
+    //                 title={translate('workspace.distanceRates.oopsNotSoFast')}
+    //                 prompt={translate('workspace.distanceRates.workspaceNeeds')}
+    //                 confirmText={translate('common.buttonConfirm')}
+    //                 shouldShowCancelButton={false}
+    //             />
+    //             <ConfirmModal
+    //                 title={translate('workspace.distanceRates.deleteDistanceRate')}
+    //                 isVisible={isDeleteModalVisible}
+    //                 onConfirm={deleteRates}
+    //                 onCancel={() => setIsDeleteModalVisible(false)}
+    //                 prompt={translate('workspace.distanceRates.areYouSureDelete', {count: selectedDistanceRates.length})}
+    //                 confirmText={translate('common.delete')}
+    //                 cancelText={translate('common.cancel')}
+    //                 danger
+    //             />
+    //         </ScreenWrapper>
+    //     </AccessOrNotFoundWrapper>
+    // );
+>>>>>>> Stashed changes
 }
 
 export default PolicyDistanceRatesPage;

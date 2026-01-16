@@ -106,3 +106,130 @@ function DraggableList<T>({
 }
 
 export default DraggableList;
+
+
+
+
+
+
+
+// import React, {Fragment} from 'react';
+// import type {DragEndEvent} from '@dnd-kit/core';
+// import {
+//     DndContext,
+//     closestCenter,
+//     PointerSensor,
+//     KeyboardSensor,
+//     useSensor,
+//     useSensors,
+// } from '@dnd-kit/core';
+// import {
+//     SortableContext,
+//     arrayMove,
+//     verticalListSortingStrategy,
+//     sortableKeyboardCoordinates,
+// } from '@dnd-kit/sortable';
+// import {restrictToParentElement, restrictToVerticalAxis} from '@dnd-kit/modifiers';
+
+// import ScrollView from '@components/ScrollView';
+// import useThemeStyles from '@hooks/useThemeStyles';
+// import SortableItem from './SortableItem';
+// import type DraggableListProps from './types';
+
+// const minimumActivationDistance = 5;
+
+// function DraggableList<T>({
+//     data = [],
+//     renderItem,
+//     keyExtractor,
+//     onDragEnd: onDragEndCallback,
+//     ListFooterComponent,
+//     disableScroll,
+//     ref,
+// }: DraggableListProps<T> & {ref?: React.ForwardedRef<any>}) {
+//     const styles = useThemeStyles();
+//     const items = data.map((item, index) => keyExtractor(item, index));
+
+//     const onDragEnd = (event: DragEndEvent) => {
+//         const {active, over} = event;
+//         if (!over || active.id === over.id) {
+//             return;
+//         }
+
+//         const oldIndex = items.indexOf(String(active.id));
+//         const newIndex = items.indexOf(String(over.id));
+
+//         if (oldIndex === -1 || newIndex === -1) {
+//             return;
+//         }
+
+//         const reorderedItems = arrayMove(data, oldIndex, newIndex);
+//         onDragEndCallback?.({data: reorderedItems});
+//     };
+
+//     const sensors = useSensors(
+//         useSensor(PointerSensor, {
+//             activationConstraint: {distance: minimumActivationDistance},
+//         }),
+//         // ⛔ KeyboardSensor intentionally kept but NOT advertised to users
+//         useSensor(KeyboardSensor, {
+//             coordinateGetter: sortableKeyboardCoordinates,
+//         }),
+//     );
+
+//     const Container = disableScroll ? Fragment : ScrollView;
+
+//     return (
+//         <Container
+//             ref={ref}
+//             style={styles.flex1}
+//             contentContainerStyle={styles.flex1}
+//         >
+//             <div>
+//                 <DndContext
+//                     sensors={sensors}
+//                     collisionDetection={closestCenter}
+//                     modifiers={[restrictToParentElement, restrictToVerticalAxis]}
+//                     onDragEnd={onDragEnd}
+//                 >
+//                     <SortableContext
+//                         items={items}
+//                         strategy={verticalListSortingStrategy}
+//                     >
+//                         {data.map((item, index) => {
+//                             const key = keyExtractor(item, index);
+
+//                             const isDisabled =
+//                                 typeof item === 'object' &&
+//                                 item !== null &&
+//                                 'isDragDisabled' in item
+//                                     ? Boolean(
+//                                           (item as {isDragDisabled?: boolean})
+//                                               .isDragDisabled,
+//                                       )
+//                                     : false;
+
+//                             return (
+//                                 <SortableItem
+//                                     key={key}
+//                                     id={key}
+//                                     disabled={isDisabled}
+//                                 >
+//                                     {renderItem({
+//                                         item,
+//                                         getIndex: () => index,
+//                                         isActive: false,
+//                                         drag: () => {},
+//                                     })}
+//                                 </SortableItem>
+//                             );
+//                         })}
+//                     </SortableContext>
+//                 </DndContext>
+//             </div>
+//             {ListFooterComponent}
+//         </Container>
+//     );
+// }
+
+// export default DraggableList;
