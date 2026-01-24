@@ -933,34 +933,44 @@ function SearchPage({route}: SearchPageProps) {
             });
         }
 
-        const shouldShowDeleteOption =
-            !isOffline &&
-            selectedTransactionsKeys.every((id) => {
-                const transaction = currentSearchResults?.data?.[`${ONYXKEYS.COLLECTION.TRANSACTION}${id}`];
+            const shouldShowDeleteOption = selectedTransactionsKeys.every((id) => {
+                const transaction =
+                    currentSearchResults?.data?.[`${ONYXKEYS.COLLECTION.TRANSACTION}${id}`] ??
+                    selectedTransactions[id];
+
                 if (!transaction) {
                     return false;
                 }
+
                 const parentReportID = transaction.reportID;
-                const parentReport = currentSearchResults?.data?.[`${ONYXKEYS.COLLECTION.REPORT}${parentReportID}`];
-                const reportActions = currentSearchResults?.data?.[`${ONYXKEYS.COLLECTION.REPORT_ACTIONS}${parentReportID}`];
-                const parentReportAction =
-                    Object.values(reportActions ?? {}).find(
-                        (action) => (isMoneyRequestAction(action) ? getOriginalMessage(action)?.IOUTransactionID : undefined) === transaction.transactionID,
-                    ) ?? selectedTransactions[id].reportAction;
-                return canDeleteMoneyRequestReport(parentReport, [transaction], parentReportAction ? [parentReportAction] : []);
+                const parentReport =
+                    currentSearchResults?.data?.[`${ONYXKEYS.COLLECTION.REPORT}${parentReportID}`] ??
+                    getReportOrDraftReport(parentReportID);
+
+                if (!parentReport) {
+                    return false;
+                }
+
+                return canDeleteMoneyRequestReport(parentReport, [transaction as Transaction], []);
             });
 
-        if (shouldShowDeleteOption) {
-            options.push({
-                icon: expensifyIcons.Trashcan,
-                text: translate('search.bulkActions.delete'),
-                value: CONST.SEARCH.BULK_ACTION_TYPES.DELETE,
-                shouldCloseModalOnSelect: true,
-                onSelected: () => {
-                    handleDeleteSelectedTransactions();
-                },
-            });
-        }
+
+    if (shouldShowDeleteOption) {
+        options.push({
+            icon: expensifyIcons.Trashcan,
+            text: translate('search.bulkActions.delete'),
+            value: CONST.SEARCH.BULK_ACTION_TYPES.DELETE,
+            shouldCloseModalOnSelect: true,
+            onSelected: () => {
+                handleDeleteSelectedTransactions();
+            },
+        });
+    }
+
+
+
+
+        // /////////////////
 
         if (options.length === 0) {
             const emptyOptionStyle = {

@@ -459,7 +459,6 @@ function PolicyDistanceRatesPage({
         </>
     );
 
-<<<<<<< Updated upstream
     return (
         <AccessOrNotFoundWrapper
             accessVariants={[CONST.POLICY.ACCESS_VARIANTS.ADMIN, CONST.POLICY.ACCESS_VARIANTS.PAID]}
@@ -540,7 +539,6 @@ function PolicyDistanceRatesPage({
             </ScreenWrapper>
         </AccessOrNotFoundWrapper>
     );
-=======
     return null;
 
     // return (
@@ -623,7 +621,6 @@ function PolicyDistanceRatesPage({
     //         </ScreenWrapper>
     //     </AccessOrNotFoundWrapper>
     // );
->>>>>>> Stashed changes
 }
 
 export default PolicyDistanceRatesPage;
